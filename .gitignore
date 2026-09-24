@@ -1,0 +1,8 @@
+# Dependencias
+node_modules/
+
+# Archivo de bloqueo (con guion como aparece en tu estructura)
+package-lock.json
+
+# Imagen del modelo entidad-relación dentro de la carpeta database
+database/ERM.png
