@@ -7,7 +7,7 @@ const rl = readline.createInterface({
 });
 
 async function main() {
-  
+
 }
 
 main();
