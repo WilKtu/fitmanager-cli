@@ -2,6 +2,23 @@
   "name": "fitmanager-cli",
   "version": "1.0.0",
   "description": "Sistema de gestión para entrenadores personales y gimnasios desarrollado con Node.js.",
+  "keywords": [
+    "nodejs",
+    "mysql",
+    "cli",
+    "fitmanager"
+  ],
+  "homepage": "https://github.com/WilKtu/fitmanager-cli#readme",
+  "bugs": {
+    "url": "https://github.com/WilKtu/fitmanager-cli/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilKtu/fitmanager-cli.git"
+  },
+  "license": "ISC",
+  "author": "wilder",
+  "type": "module",
   "main": "src/app.js",
   "directories": {
     "doc": "docs"
@@ -12,23 +29,6 @@
     "check": "node --check src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WilKtu/fitmanager-cli.git"
-  },
-  "keywords": [
-    "nodejs",
-    "mysql",
-    "cli",
-    "fitmanager"
-  ],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "bugs": {
-    "url": "https://github.com/WilKtu/fitmanager-cli/issues"
-  },
-  "homepage": "https://github.com/WilKtu/fitmanager-cli#readme",
   "dependencies": {
     "mysql2": "^3.24.4"
   }
