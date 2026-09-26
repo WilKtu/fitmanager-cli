@@ -40,7 +40,7 @@ async function iniciarMenu(pool) {
             case '5': await menuContratos(pool); break;
             case '6': await menuFinanzas(pool); break;
             case '7': salir = true; break;
-            default: console.log('⚠️ Opción no válida');
+            default: console.log(' Opción no válida');
         }
     }
 
@@ -92,7 +92,6 @@ async function menuClientes(pool) {
             const fechaFin = await preguntar('Fecha fin (YYYY-MM-DD): ');
             const condiciones = await preguntar('Condiciones del contrato: ');
             const precio = parseFloat(await preguntar('Precio: '));
-            // ⚠️ ACCIÓN CRÍTICA: usa transacción
             await transacciones.asignarPlanConContrato(pool, clienteId, planId, fechaInicio, fechaFin, condiciones, precio);
             break;
         }
@@ -131,7 +130,6 @@ async function menuPlanes(pool) {
         }
         case '4': {
             const id = parseInt(await preguntar('ID de plan_cliente a cancelar: '));
-            // ⚠️ ACCIÓN CRÍTICA: rollback de seguimiento y contrato
             await transacciones.cancelarPlanConRollback(pool, id);
             break;
         }
@@ -249,7 +247,6 @@ async function menuFinanzas(pool) {
             const descripcion = await preguntar('Descripción: ');
             const fecha = await preguntar('Fecha (YYYY-MM-DD): ');
             const categoria = await preguntar('Categoría: ');
-            // ⚠️ ACCIÓN CRÍTICA: transacción real
             await transacciones.registrarTransaccion(pool, clienteId || null, 'ingreso', monto, descripcion, fecha, categoria);
             break;
         }
