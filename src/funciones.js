@@ -1,5 +1,3 @@
-// funciones.js - Funciones CRUD básicas (sin transacciones)
-// Aquí están las operaciones simples: crear, leer, actualizar, eliminar
 
 // ---------- CLIENTES ----------
 async function crearCliente(pool, nombre, edad, correo, telefono) {
@@ -8,19 +6,19 @@ async function crearCliente(pool, nombre, edad, correo, telefono) {
             'INSERT INTO clientes (nombre, edad, correo, telefono) VALUES (?, ?, ?, ?)',
             [nombre, edad, correo, telefono]
         );
-        console.log(`✅ Cliente creado con ID: ${resultado.insertId}`);
+        console.log(` Cliente creado con ID: ${resultado.insertId}`);
     } catch (error) {
-        console.error('❌ Error al crear cliente:', error.message);
+        console.error(' Error al crear cliente:', error.message);
     }
 }
 
 async function listarClientes(pool) {
     try {
         const [filas] = await pool.query('SELECT * FROM clientes');
-        console.log('\n📋 Lista de clientes:');
+        console.log('\n Lista de clientes:');
         console.table(filas);
     } catch (error) {
-        console.error('❌ Error al listar clientes:', error.message);
+        console.error(' Error al listar clientes:', error.message);
     }
 }
 
@@ -30,18 +28,18 @@ async function actualizarCliente(pool, id, nombre, edad, correo, telefono) {
             'UPDATE clientes SET nombre=?, edad=?, correo=?, telefono=? WHERE id=?',
             [nombre, edad, correo, telefono, id]
         );
-        console.log(`✅ Cliente actualizado. Filas afectadas: ${resultado.affectedRows}`);
+        console.log(` Cliente actualizado. Filas afectadas: ${resultado.affectedRows}`);
     } catch (error) {
-        console.error('❌ Error al actualizar:', error.message);
+        console.error(' Error al actualizar:', error.message);
     }
 }
 
 async function eliminarCliente(pool, id) {
     try {
         const [resultado] = await pool.query('DELETE FROM clientes WHERE id=?', [id]);
-        console.log(`✅ Cliente eliminado. Filas afectadas: ${resultado.affectedRows}`);
+        console.log(` Cliente eliminado. Filas afectadas: ${resultado.affectedRows}`);
     } catch (error) {
-        console.error('❌ Error al eliminar (puede tener relaciones):', error.message);
+        console.error(' Error al eliminar (puede tener relaciones):', error.message);
     }
 }
 
@@ -52,19 +50,19 @@ async function crearPlan(pool, nombre, duracion, objetivo, nivel) {
             'INSERT INTO planes (nombre, duracion_dias, objetivo, nivel) VALUES (?, ?, ?, ?)',
             [nombre, duracion, objetivo, nivel]
         );
-        console.log(`✅ Plan creado con ID: ${resultado.insertId}`);
+        console.log(` Plan creado con ID: ${resultado.insertId}`);
     } catch (error) {
-        console.error('❌ Error al crear plan:', error.message);
+        console.error(' Error al crear plan:', error.message);
     }
 }
 
 async function listarPlanes(pool) {
     try {
         const [filas] = await pool.query('SELECT * FROM planes');
-        console.log('\n📋 Lista de planes:');
+        console.log('\n Lista de planes:');
         console.table(filas);
     } catch (error) {
-        console.error('❌ Error al listar planes:', error.message);
+        console.error(' Error al listar planes:', error.message);
     }
 }
 
@@ -75,9 +73,9 @@ async function registrarSeguimiento(pool, clienteId, fecha, peso, comentarios) {
             'INSERT INTO seguimiento_fisico (cliente_id, fecha_registro, peso, comentarios) VALUES (?, ?, ?, ?)',
             [clienteId, fecha, peso, comentarios]
         );
-        console.log(`✅ Registro de seguimiento creado con ID: ${resultado.insertId}`);
+        console.log(`Registro de seguimiento creado con ID: ${resultado.insertId}`);
     } catch (error) {
-        console.error('❌ Error al registrar seguimiento:', error.message);
+        console.error(' Error al registrar seguimiento:', error.message);
     }
 }
 
@@ -87,19 +85,19 @@ async function verSeguimiento(pool, clienteId) {
             'SELECT * FROM seguimiento_fisico WHERE cliente_id=? ORDER BY fecha_registro ASC',
             [clienteId]
         );
-        console.log('\n📈 Progreso del cliente:');
+        console.log('\n Progreso del cliente:');
         console.table(filas);
     } catch (error) {
-        console.error('❌ Error al consultar seguimiento:', error.message);
+        console.error(' Error al consultar seguimiento:', error.message);
     }
 }
 
 async function eliminarSeguimiento(pool, id) {
     try {
         const [resultado] = await pool.query('DELETE FROM seguimiento_fisico WHERE id=?', [id]);
-        console.log(`✅ Registro eliminado. Filas afectadas: ${resultado.affectedRows}`);
+        console.log(`Registro eliminado. Filas afectadas: ${resultado.affectedRows}`);
     } catch (error) {
-        console.error('❌ Error al eliminar:', error.message);
+        console.error(' Error al eliminar:', error.message);
     }
 }
 
@@ -110,9 +108,9 @@ async function crearPlanNutricional(pool, clienteId, planId, descripcion) {
             'INSERT INTO planes_nutricionales (cliente_id, plan_id, descripcion) VALUES (?, ?, ?)',
             [clienteId, planId, descripcion]
         );
-        console.log(`✅ Plan nutricional creado con ID: ${resultado.insertId}`);
+        console.log(` Plan nutricional creado con ID: ${resultado.insertId}`);
     } catch (error) {
-        console.error('❌ Error al crear plan nutricional:', error.message);
+        console.error(' Error al crear plan nutricional:', error.message);
     }
 }
 
@@ -122,9 +120,9 @@ async function registrarAlimento(pool, planNutId, fecha, alimento, calorias, tip
             'INSERT INTO registros_alimentacion (plan_nutricional_id, fecha_registro, nombre_alimento, calorias, tipo_comida) VALUES (?, ?, ?, ?, ?)',
             [planNutId, fecha, alimento, calorias, tipo]
         );
-        console.log(`✅ Alimento registrado con ID: ${resultado.insertId}`);
+        console.log(` Alimento registrado con ID: ${resultado.insertId}`);
     } catch (error) {
-        console.error('❌ Error al registrar alimento:', error.message);
+        console.error('Error al registrar alimento:', error.message);
     }
 }
 
@@ -140,10 +138,10 @@ async function reporteNutricionalSemanal(pool, planNutId) {
              GROUP BY tipo_comida`,
             [planNutId]
         );
-        console.log('\n🥗 Reporte nutricional semanal:');
+        console.log('\n Reporte nutricional semanal:');
         console.table(filas);
     } catch (error) {
-        console.error('❌ Error al generar reporte:', error.message);
+        console.error(' Error al generar reporte:', error.message);
     }
 }
 
@@ -155,12 +153,12 @@ async function verContrato(pool, planClienteId) {
             [planClienteId]
         );
         if (filas.length === 0) {
-            console.log('⚠️ No se encontró contrato para ese plan_cliente');
+            console.log(' No se encontró contrato para ese plan_cliente');
         } else {
             console.table(filas);
         }
     } catch (error) {
-        console.error('❌ Error al consultar contrato:', error.message);
+        console.error(' Error al consultar contrato:', error.message);
     }
 }
 
@@ -172,10 +170,10 @@ async function listarContratosActivos(pool) {
              JOIN planes_clientes pc ON c.plan_cliente_id = pc.id
              WHERE c.estado = 'activo'`
         );
-        console.log('\n📄 Contratos activos:');
+        console.log('\n Contratos activos:');
         console.table(filas);
     } catch (error) {
-        console.error('❌ Error al listar contratos:', error.message);
+        console.error(' Error al listar contratos:', error.message);
     }
 }
 
