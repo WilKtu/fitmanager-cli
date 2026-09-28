@@ -10,12 +10,22 @@ Se desarrolló una aplicación de consola que permite administrar todas las áre
 
 ```
 fittrack/
-├── main.js           → Punto de entrada, crea la conexión a MySQL
-├── menu.js           → Menú interactivo con todas las opciones
-├── funciones.js      → Funciones CRUD simples (sin transacciones)
-├── transacciones.js  → Operaciones críticas con BEGIN/COMMIT/ROLLBACK
-├── README.md         → Este archivo
-└── database.sql      → Script de la base de datos (el que me proporcionaste)
+├── database/
+│   └── database.sql
+├── docs/
+│   └── requerimientos.md
+└── src/
+│   ├── funciones.js
+│   ├── main.js
+│   ├── menu.js
+│   └── transacciones.js
+├── .git/
+├── .gitignore
+├── node_modules/
+├── package.json
+├── package-lock.json
+├── README.md
+
 ```
 
 ##  Requisitos
@@ -33,7 +43,7 @@ fittrack/
 2. Ajusta las credenciales en `main.js` (usuario y contraseña).
 3. Ejecuta:
    ```bash
-   node main.js
+   node src/main.js
    ```
 
 ##  Acciones críticas y consistencia de datos
