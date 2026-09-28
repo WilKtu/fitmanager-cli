@@ -1,15 +1,12 @@
-// menu.js - Menú interactivo usando readline (nativo de Node, sin librerías extra)
 const readline = require('readline');
 const funciones = require('./funciones');
 const transacciones = require('./transacciones');
 
-// Creamos la interfaz para leer desde la consola
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-// Función auxiliar para preguntar al usuario
 function preguntar(texto) {
     return new Promise(resolve => rl.question(texto, respuesta => resolve(respuesta)));
 }
@@ -47,7 +44,6 @@ async function iniciarMenu(pool) {
     rl.close();
 }
 
-// ---------- SUBMENÚ: CLIENTES ----------
 async function menuClientes(pool) {
     console.log('\n--- GESTIÓN DE CLIENTES ---');
     console.log('1. Crear cliente');
@@ -98,7 +94,6 @@ async function menuClientes(pool) {
     }
 }
 
-// ---------- SUBMENÚ: PLANES ----------
 async function menuPlanes(pool) {
     console.log('\n--- GESTIÓN DE PLANES ---');
     console.log('1. Crear plan');
@@ -141,7 +136,6 @@ async function menuPlanes(pool) {
     }
 }
 
-// ---------- SUBMENÚ: SEGUIMIENTO ----------
 async function menuSeguimiento(pool) {
     console.log('\n--- SEGUIMIENTO FÍSICO ---');
     console.log('1. Registrar avance');
@@ -173,7 +167,6 @@ async function menuSeguimiento(pool) {
     }
 }
 
-// ---------- SUBMENÚ: NUTRICIÓN ----------
 async function menuNutricion(pool) {
     console.log('\n--- NUTRICIÓN ---');
     console.log('1. Crear plan nutricional');
@@ -208,7 +201,6 @@ async function menuNutricion(pool) {
     }
 }
 
-// ---------- SUBMENÚ: CONTRATOS ----------
 async function menuContratos(pool) {
     console.log('\n--- CONTRATOS ---');
     console.log('1. Ver contrato por plan_cliente');
@@ -229,7 +221,6 @@ async function menuContratos(pool) {
     }
 }
 
-// ---------- SUBMENÚ: FINANZAS ----------
 async function menuFinanzas(pool) {
     console.log('\n--- GESTIÓN FINANCIERA ---');
     console.log('1. Registrar ingreso');

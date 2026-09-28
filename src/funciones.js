@@ -1,5 +1,3 @@
-
-// ---------- CLIENTES ----------
 async function crearCliente(pool, nombre, edad, correo, telefono) {
     try {
         const [resultado] = await pool.query(
@@ -43,7 +41,6 @@ async function eliminarCliente(pool, id) {
     }
 }
 
-// ---------- PLANES ----------
 async function crearPlan(pool, nombre, duracion, objetivo, nivel) {
     try {
         const [resultado] = await pool.query(
@@ -66,7 +63,6 @@ async function listarPlanes(pool) {
     }
 }
 
-// ---------- SEGUIMIENTO FÍSICO ----------
 async function registrarSeguimiento(pool, clienteId, fecha, peso, comentarios) {
     try {
         const [resultado] = await pool.query(
@@ -101,7 +97,6 @@ async function eliminarSeguimiento(pool, id) {
     }
 }
 
-// ---------- NUTRICIÓN ----------
 async function crearPlanNutricional(pool, clienteId, planId, descripcion) {
     try {
         const [resultado] = await pool.query(
@@ -145,7 +140,6 @@ async function reporteNutricionalSemanal(pool, planNutId) {
     }
 }
 
-// ---------- CONTRATOS ----------
 async function verContrato(pool, planClienteId) {
     try {
         const [filas] = await pool.query(
@@ -177,7 +171,6 @@ async function listarContratosActivos(pool) {
     }
 }
 
-// ---------- FINANZAS (consultas) ----------
 async function balancePorFechas(pool, fechaInicio, fechaFin) {
     try {
         const [filas] = await pool.query(
@@ -189,10 +182,10 @@ async function balancePorFechas(pool, fechaInicio, fechaFin) {
              WHERE fecha_transaccion BETWEEN ? AND ?`,
             [fechaInicio, fechaFin]
         );
-        console.log('\n💰 Balance por fechas:');
+        console.log('\n Balance por fechas:');
         console.table(filas);
     } catch (error) {
-        console.error('❌ Error al calcular balance:', error.message);
+        console.error(' Error al calcular balance:', error.message);
     }
 }
 
@@ -207,10 +200,10 @@ async function balancePorCliente(pool, clienteId) {
              WHERE cliente_id = ?`,
             [clienteId]
         );
-        console.log('\n💰 Balance del cliente:');
+        console.log('\n Balance del cliente:');
         console.table(filas);
     } catch (error) {
-        console.error('❌ Error al calcular balance:', error.message);
+        console.error(' Error al calcular balance:', error.message);
     }
 }
 
