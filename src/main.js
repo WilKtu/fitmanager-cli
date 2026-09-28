@@ -11,11 +11,11 @@ async function iniciar() {
         });
 
         const conexion = await pool.getConnection();
-        console.log('Conectado a la base de datos fittrack_db');
+        console.log('');
         conexion.release();
         await menu.iniciarMenu(pool);
         await pool.end();
-        console.log('Conexión cerrada. ¡Hasta luego!');
+        console.log('Conexión cerrada');
     } catch (error) {
         console.error(
             'Error al conectar con la base de datos:',
