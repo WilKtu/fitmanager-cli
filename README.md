@@ -67,9 +67,3 @@ El archivo `transacciones.js` contiene las operaciones donde la consistencia es 
 5. **Contratos**: generados automáticamente al asignar un plan, con condiciones, precio y fechas.
 6. **Finanzas**: registro de ingresos/gastos y consultas de balance por fechas o por cliente.
 
-##  Notas de aprendizaje
-
-- Se usa `mysql2/promise` para trabajar con `async/await`, lo que hace el código más legible.
-- El menú usa `readline` nativo de Node, sin dependencias externas.
-- Cada función crítica está comentada con `⚠️ ACCIÓN CRÍTICA` para identificar fácilmente dónde se asegura la consistencia.
-- Se usa `pool.getConnection()` para obtener una conexión exclusiva durante la transacción y liberarla al final con `release()`.
