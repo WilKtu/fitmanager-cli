@@ -207,11 +207,47 @@ async function balancePorCliente(pool, clienteId) {
     }
 }
 
+//Agregar funcionalidad para registrar la asistencia de clientes a seciones del gimnasio
+
+async function asistenciaClientesGimnasio(pool,clienteId,fecha) {
+    try {
+        const [resultado] = await pool.query(
+            'INSERT INTO seguimiento_fisico (cliente_id, fecha_registro) VALUES (?, ?)',
+            [clienteId, fecha,]
+        );
+        console.log(`Asistencia de cliente con ID: ${resultado.insertId}`);
+    } catch (error) {
+        console.error(' Error al registrar asistencia:', error.message);
+    }
+}
+
+//  Reporte semanal de asistencia del cliente
+async function reporteNutricionalSemanal(pool, seguimiento_fisico) {
+    try {
+        const [filas] = await pool.query(
+            `SELECT cliente_id, 
+                    COUNT(*) as asistencia, 
+                    SUM(Id) as asistencia_total
+             FROM plan_cliente
+             WHERE segimiento_fisico_id = ?
+               AND fecha_registro >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+             GROUP BY cliente_id`,
+            [planNutId]
+        );
+        console.log('\n Reporte nutricional semanal:');
+        console.table(filas);
+    } catch (error) {
+        console.error(' Error al generar reporte:', error.message);
+    }
+}
+
+
 module.exports = {
     crearCliente, listarClientes, actualizarCliente, eliminarCliente,
     crearPlan, listarPlanes,
     registrarSeguimiento, verSeguimiento, eliminarSeguimiento,
     crearPlanNutricional, registrarAlimento, reporteNutricionalSemanal,
     verContrato, listarContratosActivos,
-    balancePorFechas, balancePorCliente
+    balancePorFechas, balancePorCliente,
+    asistenciaClientesGimnasio
 };

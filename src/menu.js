@@ -138,10 +138,12 @@ async function menuPlanes(pool) {
 
 async function menuSeguimiento(pool) {
     console.log('\n--- SEGUIMIENTO FÍSICO ---');
-    console.log('1. Registrar avance');
-    console.log('2. Ver progreso de un cliente');
-    console.log('3. Eliminar registro');
-    console.log('4. Volver');
+    console.log('1. Registrar asistencia');
+    console.log('2. Registrar avance');
+    console.log('3. Ver progreso de un cliente');
+    //console.log('4. Ver asistencia del cliente');
+    console.log('5. Eliminar registro');
+    console.log('6. Volver');
 
     const op = await preguntar('Opción: ');
 
@@ -149,21 +151,30 @@ async function menuSeguimiento(pool) {
         case '1': {
             const clienteId = parseInt(await preguntar('ID cliente: '));
             const fecha = await preguntar('Fecha (YYYY-MM-DD): ');
+            await funciones.asistenciaClientesGimnasio(pool, clienteId, fecha);
+            break;
+        }
+        case '2': {
+            const clienteId = parseInt(await preguntar('ID cliente: '));
+            const fecha = await preguntar('Fecha (YYYY-MM-DD): ');
             const peso = parseFloat(await preguntar('Peso (kg): '));
             const comentarios = await preguntar('Comentarios: ');
             await funciones.registrarSeguimiento(pool, clienteId, fecha, peso, comentarios);
             break;
         }
-        case '2': {
+        case '3': {
             const clienteId = parseInt(await preguntar('ID cliente: '));
             await funciones.verSeguimiento(pool, clienteId);
             break;
         }
-        case '3': {
+        case '4':{
             const id = parseInt(await preguntar('ID del registro a eliminar: '));
             await funciones.eliminarSeguimiento(pool, id);
             break;
         }
+        // case '5'{
+            
+        // }
     }
 }
 
